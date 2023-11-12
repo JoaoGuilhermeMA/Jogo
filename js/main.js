@@ -1,11 +1,12 @@
 import { Sprite } from "./Sprite.js";
 import { keydownFunction, keyupFunction, getKey } from "./keys.js";
+import { checkColision } from './colision.js'
 
 let canvas = document.getElementById('canvas');
 let c = canvas.getContext('2d');
 
-const progressFill = document.getElementById("vidaFill");
-const progresspcFill = document.getElementById("vidaPcFill");
+const progressFill = document.getElementById("vidaCorJogador");
+const progresspcFill = document.getElementById("vidaCorPC");
 
 let progress = 100;
 let progresspc = 100;
@@ -86,9 +87,9 @@ function animate() {
     }
 
     // enemy movement
-    if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight'))) {
+    if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight')) && !checkColision(player, enemy)) {
         enemy.velocity.x = -5
-    } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft'))) {
+    } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft')) && !checkColision(player, enemy)) {
         enemy.velocity.x = 5
     }
 
@@ -97,15 +98,15 @@ function animate() {
         player.isAttacking = false;
         console.log(progress);
         console.log('player attack');
-        progress -= 10;
-        progressFill.style.width = `${progress}%`;
+        progresspcFill.style.width = `${progresspc}%`;
+        progresspc -= 10;
     }
     // detect for collision for enemy
     if (rectangularCollision({ rectangule1: enemy, rectangule2: player }) && enemy.isAttacking) {
         enemy.isAttacking = false;
         console.log('enemy attack');
-        progresspc -= 10;
-        progresspcFill.style.width = `${progresspc}%`;
+        progress -= 10;
+        progressFill.style.width = `${progress}%`;
     }
 }
 
