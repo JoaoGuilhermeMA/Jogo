@@ -1,6 +1,7 @@
 import { Sprite } from "./Sprite.js";
 import { keydownFunction, keyupFunction, getKey } from "./keys.js";
 import { checkColision } from './colision.js'
+import { Fighter } from "./Fighter.js"
 
 let canvas = document.getElementById('canvas');
 let c = canvas.getContext('2d');
@@ -13,12 +14,22 @@ let progresspc = 100;
 progressFill.style.width = `${progress}%`;
 progresspcFill.style.width = `${progresspc}%`;
 
-canvas.width = 1024
-canvas.height = 576
+canvas.width = 1789
+canvas.height = 789
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const player = new Sprite({
+const background = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    ctx: c,
+    imageSrc: './assets/background.png'
+
+});
+
+const player = new Fighter({
     position: {
         x: 0,
         y: 0
@@ -34,7 +45,7 @@ const player = new Sprite({
     }
 });
 
-const enemy = new Sprite({
+const enemy = new Fighter({
     position: {
         x: 400,
         y: 100
@@ -64,6 +75,7 @@ function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height);
+    background.update();
     player.update();
     enemy.update();
 
@@ -74,7 +86,7 @@ function animate() {
     if (player.position.x + player.width > enemy.position.x + enemy.width) {
         player.attackBox.offSet.x = -50;
         enemy.attackBox.offSet.x = 0;
-    }else {
+    } else {
         player.attackBox.offSet.x = 0;
         enemy.attackBox.offSet.x = -50;
     }
@@ -87,9 +99,9 @@ function animate() {
     }
 
     // enemy movement
-    if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight')) && !checkColision(player, enemy)) {
+    if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight'))) {
         enemy.velocity.x = -5
-    } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft')) && !checkColision(player, enemy)) {
+    } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft'))) {
         enemy.velocity.x = 5
     }
 
