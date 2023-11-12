@@ -43,8 +43,13 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './assets/imagens/2/Idle.png',
-    framesMax: 8
+    imageSrc: './assets/imagens/1/Idle.png',
+    framesMax: 10,
+    scale: 1.8,
+    offset: {
+        x: 56,
+        y: 51
+    }
 });
 
 const enemy = new Fighter({

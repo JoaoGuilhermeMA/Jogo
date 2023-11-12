@@ -3,12 +3,13 @@ import { Sprite } from './Sprite.js';
 const gravity = 0.7
 
 export class Fighter extends Sprite {
-    constructor({ ctx, position, velocity, color = 'red', offSet, imageSrc, scale = 1, framesMax = 1, offset = { x: 0, y: 0 } }) {
+    constructor({ ctx, position, velocity, color = 'red', imageSrc, scale = 1, framesMax = 1, offSet = { x: 0, y: 0 } }) {
         super({
             position,
             imageSrc,
             scale,
             framesMax,
+            offSet
         });
         this.velocity = velocity;
         this.width = 50;
@@ -19,7 +20,7 @@ export class Fighter extends Sprite {
                 X: this.position.x,
                 y: this.position.y 
             },
-            offSet: offSet,
+            offSet,
             width: 100,
             height: 50
         }
@@ -31,7 +32,7 @@ export class Fighter extends Sprite {
         this.framesElapsed = 0
         this.framesHold = 5
     }
-    
+
 
     update() {
         this.draw();
