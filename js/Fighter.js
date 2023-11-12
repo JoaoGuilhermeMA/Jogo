@@ -1,8 +1,15 @@
+import { Sprite } from './Sprite.js';
+
 const gravity = 0.7
 
-export class Fighter {
-    constructor({ ctx, position, velocity, color = 'red', offSet}) {
-        this.position = position;
+export class Fighter extends Sprite {
+    constructor({ ctx, position, velocity, color = 'red', offSet, imageSrc, scale = 1, framesMax = 1, offset = { x: 0, y: 0 } }) {
+        super({
+            position,
+            imageSrc,
+            scale,
+            framesMax,
+        });
         this.velocity = velocity;
         this.width = 50;
         this.height = 150;
@@ -20,19 +27,11 @@ export class Fighter {
         this.isAttacking = false;
         this.ctx = ctx;
         this.inFloor = true;
+        this.framesCurrent = 0
+        this.framesElapsed = 0
+        this.framesHold = 5
     }
-
-    draw() {
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-
-        // attack box
-        if (this.isAttacking) {
-            this.ctx.fillStyle = 'green'
-            this.ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        }
-    }
+    
 
     update() {
         this.draw();
