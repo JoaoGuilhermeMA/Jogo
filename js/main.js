@@ -3,12 +3,18 @@ import { Sprite } from "./Sprite.js";
 let canvas = document.getElementById('canvas');
 let c = canvas.getContext('2d');
 
+const progressFill = document.getElementById("vidaFill");
+const progresspcFill = document.getElementById("vidaPcFill");
+
+let progress = 100;
+let progresspc = 100;
+progressFill.style.width = `${progress}%`;
+progresspcFill.style.width = `${progresspc}%`;
 
 canvas.width = 1024
 canvas.height = 576
 
 c.fillRect(0, 0, canvas.width, canvas.height);
-
 
 const player = new Sprite({
     position: {
@@ -77,6 +83,15 @@ function animate() {
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
+    // check vision
+    if (player.position.x + player.width > enemy.position.x + enemy.width) {
+        player.attackBox.offSet.x = -50;
+        enemy.attackBox.offSet.x = 0;
+    }else {
+        player.attackBox.offSet.x = 0;
+        enemy.attackBox.offSet.x = -50;
+    }
+
     // player movement
     if (keys.a.pressed && (player.lastKey === 'a' || !keys.d.pressed)) {
         player.velocity.x = -5
@@ -91,10 +106,20 @@ function animate() {
         enemy.velocity.x = 5
     }
 
-    // detect for collision
-    if (rectangularCollision && player.isAttacking) {
+    // detect for collision for player
+    if (rectangularCollision({ rectangule1: player, rectangule2: enemy }) && player.isAttacking) {
         player.isAttacking = false;
-        console.log('go');
+        console.log(progress);
+        console.log('player attack');
+        progress -= 10;
+        progressFill.style.width = `${progress}%`;
+    }
+    // detect for collision for enemy
+    if (rectangularCollision({ rectangule1: enemy, rectangule2: player }) && enemy.isAttacking) {
+        enemy.isAttacking = false;
+        console.log('enemy attack');
+        progresspc -= 10;
+        progresspcFill.style.width = `${progresspc}%`;
     }
 }
 
@@ -126,6 +151,9 @@ window.addEventListener('keydown', (event) => {
             break
         case ' ':
             player.attack();
+            break;
+        case '0':
+            enemy.attack();
             break;
         default:
             break;
