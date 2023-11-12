@@ -1,6 +1,7 @@
 import { Sprite } from "./Sprite.js";
 import { keydownFunction, keyupFunction, getKey } from "./keys.js";
 import { checkColision } from './colision.js'
+import { Fighter } from './Fighter.js'
 
 let canvas = document.getElementById('canvas');
 let c = canvas.getContext('2d');
@@ -18,7 +19,7 @@ canvas.height = 576
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const player = new Sprite({
+const player = new Fighter({
     position: {
         x: 0,
         y: 0
@@ -34,7 +35,7 @@ const player = new Sprite({
     }
 });
 
-const enemy = new Sprite({
+const enemy = new Fighter({
     position: {
         x: 400,
         y: 100
@@ -87,9 +88,9 @@ function animate() {
     }
 
     // enemy movement
-    if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight')) && !checkColision(player, enemy)) {
+    if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight'))) {
         enemy.velocity.x = -5
-    } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft')) && !checkColision(player, enemy)) {
+    } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft'))) {
         enemy.velocity.x = 5
     }
 
