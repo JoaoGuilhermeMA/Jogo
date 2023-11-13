@@ -17,9 +17,6 @@ progresspcFill.style.width = `${progresspc}%`;
 canvas.width = 1684
 canvas.height = 780
 
-c.fillRect(0, 0, canvas.width, canvas.height);
-
-
 const background = new Sprite({
     ctx: c,
     position: {
@@ -28,6 +25,18 @@ const background = new Sprite({
     },
     imageSrc: './assets/background.png'
 });
+
+const bird = new Sprite({
+    ctx: c,
+    position: {
+        x:100,
+        y:268
+    },
+    imageSrc: './assets/bird/Idle.png',
+    scale: 3,
+    frameMax: 4
+});
+
 const player = new Fighter({
     position: {
         x: 0,
@@ -41,6 +50,13 @@ const player = new Fighter({
     offSet: {
         x: 0,
         y: 0
+    },
+    imageSrc: './assets/1/Idle.png',
+    frameMax: 10,
+    scale: 3,
+    offSet: {
+        x: 215,
+        y: 150
     }
 });
 
@@ -75,8 +91,9 @@ function animate() {
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height);
     background.update();
+    bird.update();
     player.update();
-    enemy.update();
+    // enemy.update();
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
