@@ -14,11 +14,20 @@ let progresspc = 100;
 progressFill.style.width = `${progress}%`;
 progresspcFill.style.width = `${progresspc}%`;
 
-canvas.width = 1024
-canvas.height = 576
+canvas.width = 1684
+canvas.height = 780
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
+
+const background = new Sprite({
+    ctx: c,
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: './assets/background.png'
+});
 const player = new Fighter({
     position: {
         x: 0,
@@ -65,6 +74,7 @@ function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height);
+    background.update();
     player.update();
     enemy.update();
 
