@@ -61,6 +61,11 @@ export class Fighter extends Sprite {
     }
 
     attack() {
+        if (this.attackBox.offSet.x === -50) {
+            this.switchSprites('attack1_invertido');
+        }else  {
+            this.switchSprites('attack1');
+        }
         this.isAttacking = true;
         setTimeout(() => {
             this.isAttacking = false;
@@ -68,6 +73,10 @@ export class Fighter extends Sprite {
     }
 
     switchSprites(sprite) {
+        if ((this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.frameMax -1) || 
+        (this.image === this.sprites.attack1_invertido.image && this.frameCurrent < this.sprites.attack1_invertido.frameMax -1)) {
+            return
+        }
         switch (sprite) {
             case 'idle':
                 if (this.image !== this.sprites.idle.image) {
@@ -94,6 +103,13 @@ export class Fighter extends Sprite {
                 if (this.image !== this.sprites.fall.image) {
                     this.frameMax = this.sprites.fall.frameMax;
                     this.image = this.sprites.fall.image;
+                    this.frameCurrent = 0;
+                }
+                break;
+            case 'attack1':
+                if (this.image !== this.sprites.attack1.image) {
+                    this.frameMax = this.sprites.attack1.frameMax;
+                    this.image = this.sprites.attack1.image;
                     this.frameCurrent = 0;
                 }
                 break;
@@ -125,6 +141,13 @@ export class Fighter extends Sprite {
                     this.frameCurrent = 0;
                 }
                 break;
+                case 'attack1_invertido':
+                    if (this.image !== this.sprites.attack1_invertido.image) {
+                        this.frameMax = this.sprites.attack1_invertido.frameMax;
+                        this.image = this.sprites.attack1_invertido.image;
+                        this.frameCurrent = 0;
+                    }
+                    break;
             default:
                 break;
         }

@@ -75,6 +75,10 @@ const player = new Fighter({
             imageSrc: './assets/1/Fall.png',
             frameMax: 3,
         },
+        attack1: {
+            imageSrc: './assets/1/Attack1.png',
+            frameMax: 7,
+        },
         idle_invertido: {
             imageSrc: './assets/1/Idle_invertido.png',
             frameMax: 10
@@ -90,6 +94,10 @@ const player = new Fighter({
         fall_invertido: {
             imageSrc: './assets/1/Fall_invertido.png',
             frameMax: 3,
+        },
+        attack1_invertido: {
+            imageSrc: './assets/1/Attack1_invertido.png',
+            frameMax: 7,
         }
     }
 });
