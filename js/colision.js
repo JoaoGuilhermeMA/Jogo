@@ -1,5 +1,3 @@
-
-
 export function checkColision(player, enemy) {
     if (player.position.x + player.width > enemy.position.x &&
         player.position.x < enemy.position.x + enemy.width &&
