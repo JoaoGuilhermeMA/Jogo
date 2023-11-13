@@ -29,14 +29,14 @@ const background = new Sprite({
 const bird = new Sprite({
     ctx: c,
     position: {
-        x:100,
-        y:268
+        x: 100,
+        y: 268
     },
     imageSrc: './assets/bird/Idle.png',
     scale: 3,
     frameMax: 4
 });
-
+let caminhoPlayer = './assets/1/Idle.png'
 const player = new Fighter({
     position: {
         x: 0,
@@ -51,12 +51,46 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './assets/1/Idle.png',
+    imageSrc: caminhoPlayer,
     frameMax: 10,
     scale: 3,
     offSet: {
         x: 215,
         y: 150
+    },
+    sprites: {
+        idle: {
+            imageSrc: './assets/1/Idle.png',
+            frameMax: 10
+        },
+        run: {
+            imageSrc: './assets/1/Run.png',
+            frameMax: 8,
+        },
+        jump: {
+            imageSrc: './assets/1/Jump.png',
+            frameMax: 3,
+        },
+        fall: {
+            imageSrc: './assets/1/Fall.png',
+            frameMax: 3,
+        },
+        idle_invertido: {
+            imageSrc: './assets/1/Idle_invertido.png',
+            frameMax: 10
+        },
+        run_invertido: {
+            imageSrc: './assets/1/Run_invertido.png',
+            frameMax: 8,
+        },
+        jump_invertido: {
+            imageSrc: './assets/1/Jump_invertido.png',
+            frameMax: 3,
+        },
+        fall_invertido: {
+            imageSrc: './assets/1/Fall_invertido.png',
+            frameMax: 3,
+        }
     }
 });
 
@@ -102,16 +136,48 @@ function animate() {
     if (player.position.x + player.width > enemy.position.x + enemy.width) {
         player.attackBox.offSet.x = -50;
         enemy.attackBox.offSet.x = 0;
-    }else {
+    } else {
         player.attackBox.offSet.x = 0;
         enemy.attackBox.offSet.x = -50;
     }
 
+
     // player movement
     if (getKey('a') && (player.lastKey === 'a' || !getKey('d'))) {
-        player.velocity.x = -5
+        player.velocity.x = -5;
+        if (player.attackBox.offSet.x === -50) {
+            player.switchSprites('run_invertido');
+        } else {
+            player.switchSprites('run');
+        }
     } else if (getKey('d') && (player.lastKey === 'd' || !getKey('a'))) {
         player.velocity.x = 5
+        if (player.attackBox.offSet.x === -50) {
+            player.switchSprites('run_invertido');
+        } else {
+            player.switchSprites('run');
+        }
+    } else {
+        if (player.attackBox.offSet.x === -50) {
+            player.switchSprites('idle_invertido');
+        } else {
+            player.switchSprites('idle');
+        }
+    }
+
+    // jumping 
+    if (player.velocity.y < 0) {
+        if (player.attackBox.offSet.x === -50) {
+            player.switchSprites('jump_invertido');
+        } else {
+            player.switchSprites('jump');
+        }
+    } else if (player.velocity.y > 0) {
+        if (player.attackBox.offSet.x === -50) {
+            player.switchSprites('fall_invertido');
+        } else {
+            player.switchSprites('fall');
+        }
     }
 
     // enemy movement
