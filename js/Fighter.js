@@ -58,7 +58,7 @@ export class Fighter extends Sprite {
 
     update() {
         this.draw();
-        if (!this.dead){
+        if (!this.dead) {
             this.animateFrame();
         }
 
@@ -94,6 +94,7 @@ export class Fighter extends Sprite {
     }
 
     takeHit() {
+        this.health -= 20;
         if (this.infront) {
             if (this.health <= 0) {
                 this.switchSprites('death')
@@ -107,7 +108,7 @@ export class Fighter extends Sprite {
                 this.switchSprites('takeHit_invertido');
             }
         }
-        this.health -= 20
+        console.log(this.health)
     }
 
     switchSprites(sprite) {
@@ -173,13 +174,13 @@ export class Fighter extends Sprite {
                     this.frameCurrent = 0;
                 }
                 break;
-                case "death":
-                    if (this.image !== this.sprites.death.image) {
-                        this.frameMax = this.sprites.death.frameMax;
-                        this.image = this.sprites.death.image;
-                        this.frameCurrent = 0;
-                    }
-                    break;
+            case "death":
+                if (this.image !== this.sprites.death.image) {
+                    this.frameMax = this.sprites.death.frameMax;
+                    this.image = this.sprites.death.image;
+                    this.frameCurrent = 0;
+                }
+                break;
             case "idle_invertido":
                 if (this.image !== this.sprites.idle_invertido.image) {
                     this.frameMax = this.sprites.idle_invertido.frameMax;
@@ -222,13 +223,13 @@ export class Fighter extends Sprite {
                     this.frameCurrent = 0;
                 }
                 break;
-                case "death_invertido":
-                    if (this.image !== this.sprites.death_invertido.image) {
-                        this.frameMax = this.sprites.death_invertido.frameMax;
-                        this.image = this.sprites.death_invertido.image;
-                        this.frameCurrent = 0;
-                    }
-                    break;
+            case "death_invertido":
+                if (this.image !== this.sprites.death_invertido.image) {
+                    this.frameMax = this.sprites.death_invertido.frameMax;
+                    this.image = this.sprites.death_invertido.image;
+                    this.frameCurrent = 0;
+                }
+                break;
             default:
                 break;
         }
