@@ -53,10 +53,16 @@ export function keydownFunction(event, player, enemy) {
             }
             break
         case ' ':
-            player.attack();
+            player.attack(' ');
+            break;
+        case 'e':
+            player.attack('e');
             break;
         case '0':
-            enemy.attack();
+            enemy.attack('0');
+            break;
+        case 'ArrowDown':
+            enemy.attack('ArrowDown');
             break;
         default:
             break;
