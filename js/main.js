@@ -103,10 +103,10 @@ const player = new Fighter({
     attackBox: {
         offSet: {
             x: 100,
-            y: 12
+            y: -1
         },
-        width: 100,
-        height: 50
+        width: 110,
+        height: 150
     }
 });
 
@@ -115,11 +115,11 @@ const enemy = new Fighter({
         x: 400,
         y: 100
     },
+    width: 100,
     velocity: {
         x: 0,
         y: 0
     },
-    color: 'blue',
     ctx: c,
     offSet: {
         x: -50,
@@ -129,8 +129,8 @@ const enemy = new Fighter({
     frameMax: 10,
     scale: 3,
     offSet: {
-        x: 215,
-        y: 95
+        x: 140, // 215
+        y: 95   // 95
     },
     sprites: {
         idle: {
@@ -177,10 +177,10 @@ const enemy = new Fighter({
     attackBox: {
         offSet: {
             x: -300,
-            y: 12
+            y: -50
         },
-        width: 100,
-        height: 50
+        width: 140,
+        height: 200
     }
 });
 
@@ -211,14 +211,16 @@ function animate() {
     if (player.position.x + player.width > enemy.position.x + enemy.width) {
         player.infront = false;
         enemy.infront = true;
-        player.attackBox.offSet.x = -150;
-        enemy.attackBox.offSet.x = 60;
+        player.attackBox.offSet.x = -140;
+        player.attackBox.width = 139;
+        enemy.attackBox.width = 136;
+        enemy.attackBox.offSet.x = 100;
     } else {
         player.infront = true;
         enemy.infront = false;
-        player.attackBox.offSet.x = 100;
-        player.attackBox.offSet.y = 40;
-        enemy.attackBox.offSet.x = -214;
+        player.attackBox.offSet.x = 50;
+        player.attackBox.width = 130;
+        enemy.attackBox.offSet.x = -136;
     }
 
 
@@ -299,19 +301,28 @@ function animate() {
     }
 
     // detect for collision for player
-    if (rectangularCollision({ rectangule1: player, rectangule2: enemy }) && player.isAttacking) {
+    if (rectangularCollision({ rectangule1: player, rectangule2: enemy }) && player.isAttacking && player.frameCurrent === 4) {
         player.isAttacking = false;
         console.log(progress);
-        console.log('player attack');
         progresspcFill.style.width = `${progresspc}%`;
         progresspc -= 10;
     }
+
+    // if player misses
+    if (player.isAttacking && player.frameCurrent ===4) {
+        player.isAttacking = false;
+    }
+
     // detect for collision for enemy
-    if (rectangularCollision({ rectangule1: enemy, rectangule2: player }) && enemy.isAttacking) {
+    if (rectangularCollision({ rectangule1: enemy, rectangule2: player }) && enemy.isAttacking  && enemy.frameCurrent === 4) {
         enemy.isAttacking = false;
-        console.log('enemy attack');
         progress -= 10;
         progressFill.style.width = `${progress}%`;
+    }
+
+    // if enemy misses 
+    if (enemy.isAttacking && enemy.frameCurrent ===4) {
+        enemy.isAttacking = false;
     }
 }
 
