@@ -359,10 +359,19 @@ function animate() {
 
 animate();
 
-window.addEventListener('keydown', (event) => {
+function kewdownFunctionThis(event) {
+    if (player.dead || enemy.dead) {
+        removeEventListener('keydown', kewdownFunctionThis);
+    }
     keydownFunction(event, player, enemy);
-});
+}
 
-window.addEventListener('keyup', (event) => {
+function keyupFunctionThis(event) {
+    if (player.dead || enemy.dead) {
+        removeEventListener('keydown', keyupFunctionThis);
+    }
     keyupFunction(event);
-});
+}
+window.addEventListener('keydown', kewdownFunctionThis);
+
+window.addEventListener('keyup', keyupFunctionThis);
