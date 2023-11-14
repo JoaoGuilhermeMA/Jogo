@@ -99,6 +99,14 @@ const player = new Fighter({
             imageSrc: './assets/1/Attack1_invertido.png',
             frameMax: 7,
         }
+    },
+    attackBox: {
+        offSet: {
+            x: 100,
+            y: 12
+        },
+        width: 100,
+        height: 50
     }
 });
 
@@ -165,6 +173,14 @@ const enemy = new Fighter({
             imageSrc: './assets/2/Attack1_invertido.png',
             frameMax: 7,
         }
+    },
+    attackBox: {
+        offSet: {
+            x: -300,
+            y: 12
+        },
+        width: 100,
+        height: 50
     }
 });
 
@@ -185,97 +201,100 @@ function animate() {
     bird.update();
     player.update();
     enemy.update();
+    console.log(player);
+    // console.log(enemy);
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
-    // check vision
+    // // check vision
     if (player.position.x + player.width > enemy.position.x + enemy.width) {
-        player.attackBox.offSet.x = -50;
-        enemy.attackBox.offSet.x = 0;
+        player.infront = false;
+        enemy.infront = true;
+        player.attackBox.offSet.x = -150;
+        enemy.attackBox.offSet.x = 60;
     } else {
-        player.attackBox.offSet.x = 0;
-        enemy.attackBox.offSet.x = -50;
+        player.infront = true;
+        enemy.infront = false;
+        player.attackBox.offSet.x = 100;
+        player.attackBox.offSet.y = 40;
+        enemy.attackBox.offSet.x = -214;
     }
 
 
     // player movement
     if (getKey('a') && (player.lastKey === 'a' || !getKey('d'))) {
         player.velocity.x = -5;
-        if (player.attackBox.offSet.x === -50) {
-            player.switchSprites('run_invertido');
-        } else {
+        if (player.infront) {
             player.switchSprites('run');
+        } else {
+            player.switchSprites('run_invertido');
         }
     } else if (getKey('d') && (player.lastKey === 'd' || !getKey('a'))) {
         player.velocity.x = 5
-        if (player.attackBox.offSet.x === -50) {
-            player.switchSprites('run_invertido');
-        } else {
+        if (player.infront) {
             player.switchSprites('run');
+        } else {
+            player.switchSprites('run_invertido');
         }
     } else {
-        if (player.attackBox.offSet.x === -50) {
-            player.switchSprites('idle_invertido');
-        } else {
+        if (player.infront) {
             player.switchSprites('idle');
+        } else {
+            player.switchSprites('idle_invertido');
         }
     }
 
     // jumping player
     if (player.velocity.y < 0) {
-        if (player.attackBox.offSet.x === -50) {
-            player.switchSprites('jump_invertido');
-        } else {
+        if (player.infront) {
             player.switchSprites('jump');
+        } else {
+            player.switchSprites('jump_invertido');
         }
     } else if (player.velocity.y > 0) {
-        if (player.attackBox.offSet.x === -50) {
-            player.switchSprites('fall_invertido');
-        } else {
+        if (player.infront) {
             player.switchSprites('fall');
+        } else {
+            player.switchSprites('fall_invertido');
         }
     }
 
     // enemy movement
     if (getKey('ArrowLeft') && (enemy.lastKey === 'ArrowLeft' || !getKey('ArrowRight'))) {
         enemy.velocity.x = -5
-        if (enemy.attackBox.offSet.x === -50) {
-            enemy.switchSprites('run_invertido');
-            console.log("oi");
-        } else {
+        if (enemy.infront) {
             enemy.switchSprites('run');
-            console.log("oiads");
+        } else {
+            enemy.switchSprites('run_invertido');
         }
     } else if (getKey('ArrowRight') && (enemy.lastKey === 'ArrowRight' || !getKey('ArrowLeft'))) {
         enemy.velocity.x = 5
-        if (enemy.attackBox.offSet.x === -50) {
-            enemy.switchSprites('run_invertido');
-            console.log("oi");
-        } else {
+        if (enemy.infront) {
             enemy.switchSprites('run');
-            console.log("oiads");
+        } else {
+            enemy.switchSprites('run_invertido');
         }
     } else {
-        if (enemy.attackBox.offSet.x === -50) {
-            enemy.switchSprites('idle_invertido');
-        } else {
+        if (enemy.infront) {
             enemy.switchSprites('idle');
+        } else {
+            enemy.switchSprites('idle_invertido');
         }
     }
 
     // jumping enemy
     if (enemy.velocity.y < 0) {
-        if (enemy.attackBox.offSet.x === -50) {
-            enemy.switchSprites('jump_invertido');
-        } else {
+        if (enemy.infront) {
             enemy.switchSprites('jump');
+        } else {
+            enemy.switchSprites('jump_invertido');
         }
     } else if (enemy.velocity.y > 0) {
-        if (enemy.attackBox.offSet.x === -50) {
-            enemy.switchSprites('fall_invertido');
-        } else {
+        if (enemy.infront) {
             enemy.switchSprites('fall');
+        } else {
+            enemy.switchSprites('fall_invertido');
         }
     }
 

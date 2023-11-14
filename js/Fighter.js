@@ -3,7 +3,9 @@ import { Sprite } from './Sprite.js';
 const gravity = 0.7
 
 export class Fighter extends Sprite {
-    constructor({ ctx, position, velocity, color = 'red', imageSrc, scale = 1, frameMax = 1, offSet = { x: 0, y: 0 }, sprites }) {
+    constructor({ ctx, position, velocity, color = 'red', imageSrc, scale = 1, frameMax = 1, offSet = { x: 0, y: 0 }, sprites,
+    attackBox = { offSet: {}, width: undefined, height: undefined }
+    }) {
         super({
             ctx,
             position,
@@ -19,20 +21,21 @@ export class Fighter extends Sprite {
         this.width = 50;
         this.height = 150;
         this.lastKey
-        this.attackBox = {
+        this.attackBox = { 
             position: {
-                X: this.position.x,
+                x: this.position.x,
                 y: this.position.y
             },
-            offSet: offSet,
-            width: 100,
-            height: 50
+            offSet: attackBox.offSet,
+            width: attackBox.width,
+            height: attackBox.height
         }
         this.color = color;
         this.isAttacking = false;
         this.ctx = ctx;
         this.inFloor = true;
         this.sprites = sprites;
+        this.infront = true;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image = new Image();
@@ -44,8 +47,12 @@ export class Fighter extends Sprite {
         this.draw();
         this.animateFrame()
 
+        // attack box
         this.attackBox.position.x = this.position.x + this.attackBox.offSet.x;
-        this.attackBox.position.y = this.position.y;
+        this.attackBox.position.y = this.position.y + this.attackBox.offSet.y;
+
+        this.ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -61,10 +68,10 @@ export class Fighter extends Sprite {
     }
 
     attack() {
-        if (this.attackBox.offSet.x === -50) {
-            this.switchSprites('attack1_invertido');
-        }else  {
+        if (this.infront) {
             this.switchSprites('attack1');
+        } else {
+            this.switchSprites('attack1_invertido');
         }
         this.isAttacking = true;
         setTimeout(() => {
@@ -73,8 +80,8 @@ export class Fighter extends Sprite {
     }
 
     switchSprites(sprite) {
-        if ((this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.frameMax -1) || 
-        (this.image === this.sprites.attack1_invertido.image && this.frameCurrent < this.sprites.attack1_invertido.frameMax -1)) {
+        if ((this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.frameMax - 1) ||
+            (this.image === this.sprites.attack1_invertido.image && this.frameCurrent < this.sprites.attack1_invertido.frameMax - 1)) {
             return
         }
         switch (sprite) {
@@ -141,13 +148,13 @@ export class Fighter extends Sprite {
                     this.frameCurrent = 0;
                 }
                 break;
-                case 'attack1_invertido':
-                    if (this.image !== this.sprites.attack1_invertido.image) {
-                        this.frameMax = this.sprites.attack1_invertido.frameMax;
-                        this.image = this.sprites.attack1_invertido.image;
-                        this.frameCurrent = 0;
-                    }
-                    break;
+            case 'attack1_invertido':
+                if (this.image !== this.sprites.attack1_invertido.image) {
+                    this.frameMax = this.sprites.attack1_invertido.frameMax;
+                    this.image = this.sprites.attack1_invertido.image;
+                    this.frameCurrent = 0;
+                }
+                break;
             default:
                 break;
         }
