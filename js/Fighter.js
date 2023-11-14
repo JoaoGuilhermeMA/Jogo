@@ -84,11 +84,27 @@ export class Fighter extends Sprite {
         }
     }
 
-    attack() {
-        if (this.infront) {
-            this.switchSprites("attack1");
+    attack(attack) {
+        if (attack === ' ') {
+            if (this.infront) {
+                this.switchSprites("attack1");
+            } else {
+                this.switchSprites("attack1_invertido");
+            }
+        } else if (attack === 'e') {
+            if (this.infront) {
+                this.switchSprites("attack2");
+            } else {
+                this.switchSprites("attack2");
+            }
+        } else if (attack === '0') {
+            if (this.infront) {
+                this.switchSprites("attack1");
+            } else {
+                this.switchSprites("attack1_invertido");
+            }
         } else {
-            this.switchSprites("attack1_invertido");
+            this.switchSprites("attack2")
         }
         this.isAttacking = true;
     }
@@ -122,6 +138,11 @@ export class Fighter extends Sprite {
         // overriding all other animations with the attack animation
         if ((this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.frameMax - 1) ||
             (this.image === this.sprites.attack1_invertido.image && this.frameCurrent < this.sprites.attack1_invertido.frameMax - 1)) {
+            return;
+        }
+
+        // || (this.image === this.sprites.attack1_invertido.image && this.frameCurrent < this.sprites.attack1_invertido.frameMax - 1)
+        if ((this.image === this.sprites.attack2.image && this.frameCurrent < this.sprites.attack2.frameMax - 1)) {
             return;
         }
 
@@ -178,6 +199,14 @@ export class Fighter extends Sprite {
                 if (this.image !== this.sprites.death.image) {
                     this.frameMax = this.sprites.death.frameMax;
                     this.image = this.sprites.death.image;
+                    this.frameCurrent = 0;
+                }
+                break;
+            case "attack2":
+                if (this.image !== this.sprites.attack2.image) {
+                    console.log(this.sprites.attack1);
+                    this.frameMax = this.sprites.attack2.frameMax;
+                    this.image = this.sprites.attack2.image;
                     this.frameCurrent = 0;
                 }
                 break;
