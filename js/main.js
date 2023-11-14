@@ -110,6 +110,10 @@ const player = new Fighter({
         death_invertido: {
             imageSrc: './assets/1/Death_invertido.png',
             frameMax: 7,
+        },
+        attack2: {
+            imageSrc: './assets/1/Attack3.png',
+            frameMax: 8,
         }
     },
     attackBox: {
@@ -200,6 +204,10 @@ const enemy = new Fighter({
         death_invertido: {
             imageSrc: './assets/2/Death_invertido.png',
             frameMax: 11,
+        },
+        attack2: {
+            imageSrc: './assets/2/Attack3_invertido.png',
+            frameMax: 9,
         }
     },
     attackBox: {
