@@ -1,5 +1,5 @@
 import { keydownFunction, keyupFunction, getKey } from "./keys.js";
-import { checkColision } from './colision.js'
+import { rectangularCollision } from './colision.js'
 import { selectedSpritePlayer } from './generatePlayer.js'
 import { selectedSpriteEnemy } from './generateEnemy.js'
 import { spriteBackground, spriteBird } from './generateSprites.js'
@@ -23,16 +23,6 @@ const enemy = selectedSpriteEnemy();
 
 progressFill.style.width = `${player.health}%`;
 progresspcFill.style.width = `${enemy.health}%`;
-
-
-function rectangularCollision({ rectangule1, rectangule2 }) {
-    return (
-        rectangule1.attackBox.position.x + rectangule1.attackBox.width >= rectangule2.position.x
-        && rectangule1.attackBox.position.x <= rectangule2.position.x + rectangule2.width
-        && rectangule1.attackBox.position.y + rectangule1.attackBox.height >= rectangule2.position.y
-        && rectangule1.attackBox.position.y <= rectangule2.position.y + rectangule2.height
-    )
-}
 
 function animate() {
     window.requestAnimationFrame(animate);
