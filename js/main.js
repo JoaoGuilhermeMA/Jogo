@@ -9,10 +9,6 @@ let c = canvas.getContext('2d');
 const progressFill = document.getElementById("vidaCorJogador");
 const progresspcFill = document.getElementById("vidaCorPC");
 
-let progress = 100;
-let progresspc = 100;
-progressFill.style.width = `${progress}%`;
-progresspcFill.style.width = `${progresspc}%`;
 
 canvas.width = 1684
 canvas.height = 780
@@ -98,6 +94,22 @@ const player = new Fighter({
         attack1_invertido: {
             imageSrc: './assets/1/Attack1_invertido.png',
             frameMax: 7,
+        },
+        takeHit: {
+            imageSrc: './assets/1/Takehit.png',
+            frameMax: 3,
+        },
+        takeHit_invertido: {
+            imageSrc: './assets/1/TakeHit_invertido.png',
+            frameMax: 3,
+        },
+        death: {
+            imageSrc: './assets/1/Death.png',
+            frameMax: 7,
+        },
+        death_invertido: {
+            imageSrc: './assets/1/Death_invertido.png',
+            frameMax: 7,
         }
     },
     attackBox: {
@@ -172,6 +184,22 @@ const enemy = new Fighter({
         attack1_invertido: {
             imageSrc: './assets/2/Attack1_invertido.png',
             frameMax: 7,
+        },
+        takeHit: {
+            imageSrc: './assets/2/Takehit.png',
+            frameMax: 3,
+        },
+        takeHit_invertido: {
+            imageSrc: './assets/2/TakeHit_invertido.png',
+            frameMax: 3,
+        },
+        death: {
+            imageSrc: './assets/2/Death.png',
+            frameMax: 11,
+        },
+        death_invertido: {
+            imageSrc: './assets/2/Death_invertido.png',
+            frameMax: 11,
         }
     },
     attackBox: {
@@ -183,6 +211,10 @@ const enemy = new Fighter({
         height: 200
     }
 });
+
+progressFill.style.width = `${player.health}%`;
+progresspcFill.style.width = `${enemy.health}%`;
+
 
 function rectangularCollision({ rectangule1, rectangule2 }) {
     return (
@@ -201,7 +233,7 @@ function animate() {
     bird.update();
     player.update();
     enemy.update();
-    console.log(player);
+    // console.log(player);
     // console.log(enemy);
 
     player.velocity.x = 0;
@@ -300,28 +332,27 @@ function animate() {
         }
     }
 
-    // detect for collision for player
+    // detect for collision for player and enemy gets hit
     if (rectangularCollision({ rectangule1: player, rectangule2: enemy }) && player.isAttacking && player.frameCurrent === 4) {
+        enemy.takeHit();
         player.isAttacking = false;
-        console.log(progress);
-        progresspcFill.style.width = `${progresspc}%`;
-        progresspc -= 10;
+        progresspcFill.style.width = `${enemy.health}%`;
     }
 
     // if player misses
-    if (player.isAttacking && player.frameCurrent ===4) {
+    if (player.isAttacking && player.frameCurrent === 4) {
         player.isAttacking = false;
     }
 
     // detect for collision for enemy
-    if (rectangularCollision({ rectangule1: enemy, rectangule2: player }) && enemy.isAttacking  && enemy.frameCurrent === 4) {
+    if (rectangularCollision({ rectangule1: enemy, rectangule2: player }) && enemy.isAttacking && enemy.frameCurrent === 4) {
         enemy.isAttacking = false;
-        progress -= 10;
-        progressFill.style.width = `${progress}%`;
+        player.takeHit();
+        progressFill.style.width = `${player.health}%`;
     }
 
     // if enemy misses 
-    if (enemy.isAttacking && enemy.frameCurrent ===4) {
+    if (enemy.isAttacking && enemy.frameCurrent === 4) {
         enemy.isAttacking = false;
     }
 }
