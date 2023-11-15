@@ -27,67 +27,83 @@ const enemy = new Fighter({
     sprites: {
         idle: {
             imageSrc: './assets/2/Idle.png',
-            frameMax: 10
+            frameMax: 10,
+            invertida: false
         },
         run: {
             imageSrc: './assets/2/Run.png',
             frameMax: 8,
+            invertida: false
         },
         jump: {
             imageSrc: './assets/2/Jump.png',
             frameMax: 3,
+            invertida: false
         },
         fall: {
             imageSrc: './assets/2/Fall.png',
             frameMax: 3,
+            invertida: false
         },
         attack1: {
             imageSrc: './assets/2/Attack1.png',
             frameMax: 7,
+            invertida: false
         },
         idle_invertido: {
             imageSrc: './assets/2/Idle_invertido.png',
-            frameMax: 10
+            frameMax: 10,
+            invertida: true
         },
         run_invertido: {
             imageSrc: './assets/2/Run_invertido.png',
             frameMax: 8,
+            invertida: true
         },
         jump_invertido: {
             imageSrc: './assets/2/Jump_invertido.png',
             frameMax: 3,
+            invertida: true
         },
         fall_invertido: {
             imageSrc: './assets/2/Fall_invertido.png',
             frameMax: 3,
+            invertida: true
         },
         attack1_invertido: {
             imageSrc: './assets/2/Attack1_invertido.png',
             frameMax: 7,
+            invertida: true
         },
         takeHit: {
             imageSrc: './assets/2/Takehit.png',
             frameMax: 3,
+            invertida: false
         },
         takeHit_invertido: {
             imageSrc: './assets/2/TakeHit_invertido.png',
             frameMax: 3,
+            invertida: true
         },
         death: {
             imageSrc: './assets/2/Death.png',
             frameMax: 11,
+            invertida: false
         },
         death_invertido: {
             imageSrc: './assets/2/Death_invertido.png',
             frameMax: 11,
+            invertida: true
         },
         attack2: {
             imageSrc: './assets/2/Attack3.png',
             frameMax: 9,
+            invertida: false
         },
         attack2_invertido: {
             imageSrc: './assets/2/Attack3_invertido.png',
             frameMax: 9,
+            invertida: true
         }
     },
     attackBox: {

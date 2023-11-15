@@ -1,5 +1,5 @@
 export class Sprite {
-    constructor({ ctx, position, imageSrc, scale = 1, frameMax = 1, offSet = { x: 0, y: 0 } }) {
+    constructor({ ctx, position, imageSrc, scale = 1, frameMax = 1, offSet = { x: 0, y: 0 } }, invertida) {
         this.position = position;
         this.width = 50;
         this.height = 150;
@@ -11,20 +11,19 @@ export class Sprite {
         this.frameCurrent = 0;
         this.frameElapsed = 0;
         this.framehold = 10;
-        this.offSet = offSet
+        this.offSet = offSet;
     }
-
     draw() {
-        this.ctx.drawImage(
-            this.image,
-            this.frameCurrent * (this.image.width / this.frameMax),
-            0,
-            this.image.width / this.frameMax,
-            this.image.height,
-            this.position.x - this.offSet.x,
-            this.position.y - this.offSet.y,
-            (this.image.width / this.frameMax) * this.scale,
-            this.image.height * this.scale);
+            this.ctx.drawImage(
+                this.image,
+                this.frameCurrent * (this.image.width / this.frameMax),
+                0,
+                this.image.width / this.frameMax,
+                this.image.height,
+                this.position.x - this.offSet.x,
+                this.position.y - this.offSet.y,
+                (this.image.width / this.frameMax) * this.scale,
+                this.image.height * this.scale);
     }
 
     animateFrame(){
