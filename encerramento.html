@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Encerramento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<style>
+  h1 {
+    font-family: 'VT323', monospace;
+    font-size: 100px;
+  }
+</style>
+
+<body>
+  <div>
+    <h1 id='vencedor'> Parabéns, voce ganhou! </h1>
+  </div>
+  <script>
+    const winner = localStorage.getItem('winner')
+    const tela_vencedor = document.getElementById("vencedor") 
+  </script>
+</body>
+
+</html>
