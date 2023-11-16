@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo de Matemática</title>
+  <script>
+    let score = 0;
+    let correctAnswer = 0;
+
+    function checkAnswer() {
+      const answer = document.getElementById("answer").value;
+
+      if (parseInt(answer) === correctAnswer) {
+        score++;
+        if (score === 3) {
+          window.location.href = "escolheNome.html";
+        } else {
+          document.getElementById("answer").value = "";
+          document.getElementById("score").innerText = `Pontuação: ${score}`;
+          generateQuestion();
+        }
+      } else {
+        alert("Resposta incorreta. Tente novamente.");
+      }
+    }
+
+    function generateQuestion() {
+      const num1 = Math.floor(Math.random() * 10);
+      const num2 = Math.floor(Math.random() * 10);
+      correctAnswer = num1 + num2;
+
+      const question = `Quanto é ${num1} + ${num2}?`;
+      document.getElementById("question").innerText = question;
+    }
+  </script>
+</head>
+<body>
+  <h1>Jogo de Matemática</h1>
+  <p id="question"></p>
+  <input type="text" id="answer" placeholder="Sua resposta">
+  <button onclick="checkAnswer()">Verificar</button>
+  <p id="score">Pontuação: 0</p>
+
+  <script>
+    generateQuestion();
+  </script>
+</body>
+</html>
