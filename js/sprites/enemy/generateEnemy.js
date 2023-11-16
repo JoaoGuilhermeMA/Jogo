@@ -50,8 +50,8 @@ const enemy = new Fighter({
             frameMax: 7,
             invertida: false,
             area: {
-                width: 300,
-                height: 150
+                width: 125,
+                height: 140
             }
         },
         idle_invertido: {
@@ -79,8 +79,8 @@ const enemy = new Fighter({
             frameMax: 7,
             invertida: true,
             area: {
-                width: 300,
-                height: 150
+                width: 124,
+                height: 200
             }
         },
         takeHit: {
@@ -108,7 +108,7 @@ const enemy = new Fighter({
             frameMax: 9,
             invertida: false,
             area: {
-                width: 300,
+                width: 125,
                 height: 150
             }
         },
@@ -117,7 +117,7 @@ const enemy = new Fighter({
             frameMax: 9,
             invertida: true,
             area: {
-                width: 300,
+                width: 126,
                 height: 150
             }
         }

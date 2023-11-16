@@ -7,6 +7,6 @@ export function checkVision(player, enemy) {
         player.infront = true;
         enemy.infront = false;
         player.attackBox.offSet.x = 50;
-        enemy.attackBox.offSet.x = -136;
+        // enemy.attackBox.offSet.x = -136;
     } 
 }
