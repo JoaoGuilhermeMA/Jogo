@@ -1,9 +1,9 @@
-#barras-de-vida{
+#barras-de-vida {
     display: flex;
     margin: 20px 60px;
 }
 
-#vidaJogador{
+#vidaJogador {
     width: 300px;
     height: 20px;
     background-color: #f0f0f0;
@@ -11,28 +11,28 @@
     margin-right: 200px;
 }
 
-#vidaCorJogador{
+#vidaCorJogador {
     height: 100%;
     background-color: #f44336;
     width: 0;
     border-radius: 10px;
 }
 
-#vidaPc{
+#vidaPc {
     width: 300px;
     height: 20px;
     background-color: #f0f0f0;
     border-radius: 10px;
 }
 
-#vidaCorPC{
+#vidaCorPC {
     height: 100%;
     background-color: #f44336;
     width: 0;
     border-radius: 10px;
 }
 
-/* .main {
+.main {
     text-align: center;
 }
 
@@ -51,5 +51,4 @@ h1 {
     padding: 20px;
     margin: 10px;
     flex: 0 0 calc(33.33% - 20px);
-    /* Isso garante 3 artigos por linha, considerando a margem */
-/* } */ 
+}
