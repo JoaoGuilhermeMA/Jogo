@@ -1,4 +1,4 @@
-import { Sprite } from "../Sprite.js";
+import { Sprite } from "./Sprite.js";
 const canvases = document.querySelectorAll('.articles canvas');
 
 const scaleConfig = [

@@ -64,6 +64,10 @@ export function keydownFunction(event, player, enemy) {
         case 'ArrowDown':
             enemy.attack('ArrowDown');
             break;
+        case 'j':
+            localStorage.clear();
+            window.location.href = 'index.html';
+            break;
         default:
             break;
     }

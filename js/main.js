@@ -7,7 +7,6 @@ import { playerMovement, jumpingPlayer, ifPlayerMisses } from './sprites/player/
 import { checkVision } from './vision.js'
 import { jumpingEnemy, movementEnemy, ifEnemyMisses } from './sprites/enemy/movementEnemy.js'
 import {updateHealthEnemy, updateHealthPlayer} from './healthBar.js'
-import { selectedSpriteA } from './sprites/novo.js'
 
 let canvas = document.getElementById('canvas');
 let c = canvas.getContext('2d');
@@ -19,7 +18,6 @@ const background = spriteBackground();
 const bird = spriteBird();
 const player = selectedSpritePlayer()
 const enemy = selectedSpriteEnemy();
-const novo = selectedSpriteA();
 
 updateHealthEnemy(enemy);
 updateHealthPlayer(player);
