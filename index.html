@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Jogo de Matemática</title>
@@ -13,7 +14,7 @@
       if (parseInt(answer) === correctAnswer) {
         score++;
         if (score === 3) {
-          window.location.href = "escolheNome.html";
+          window.location.href = "splash.html";
         } else {
           document.getElementById("answer").value = "";
           document.getElementById("score").innerText = `Pontuação: ${score}`;
@@ -34,15 +35,18 @@
     }
   </script>
 </head>
-<body>
-  <h1>Jogo de Matemática</h1>
-  <p id="question"></p>
-  <input type="text" id="answer" placeholder="Sua resposta">
-  <button onclick="checkAnswer()">Verificar</button>
-  <p id="score">Pontuação: 0</p>
 
+<body>
+  <div id="container-tela-1">
+    <h1>Jogo de Matemática</h1>
+    <p id="question"></p>
+    <input type="text" id="answer" placeholder="Sua resposta">
+    <button onclick="checkAnswer()">Verificar</button>
+    <p id="score">Pontuação: 0</p>
+  </div>
   <script>
     generateQuestion();
   </script>
 </body>
+
 </html>
