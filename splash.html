@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      font-family: 'VT323', monospace;
+      font-size: 100px;
+    }
+
+    #splash-screen {
+      text-align: center;
+    }
+
+    #main-content {
+      display: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Simulando um carregamento assíncrono, como imagens, dados, etc.
+      setTimeout(function () {
+        // Redirecionamento para outra página HTML
+        window.location.href = "escolheNome.html";
+      }, 10000); // Tempo em milissegundos (3 segundos neste exemplo)
+    });
+  </script>
+  <title>Splash Screen Example</title>
+</head>
+
+<body>
+  <audio autoplay style="display: none;">
+    <source src="./áudio BELLI GOL BELLINGHAM.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento audio.
+  </audio>
+  <div id="splash-screen">
+    <img src="./assets/tamandua.jpg" alt="Tamandua" width="700" height="700">
+    <h1>Bellingham studios</h1>
+    <!-- Adicione outros elementos ou estilos conforme necessário -->
+  </div>
+
+</body>
+
+</html>
