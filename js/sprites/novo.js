@@ -1,4 +1,4 @@
-import { Fighter } from '../../Fighter.js'
+import { Fighter } from '../Fighter.js'
 let canvas = document.getElementById('canvas');
 let c = canvas.getContext('2d');
 
@@ -178,7 +178,7 @@ let c = canvas.getContext('2d');
 //             frameMax: 6,
 //             invertida: false,
 //             area: {
-//                 width: 140,
+//                 width: 130,
 //                 height: 150
 //             }
 //         },
@@ -207,7 +207,7 @@ let c = canvas.getContext('2d');
 //             frameMax: 6,
 //             invertida: true,
 //             area: {
-//                 width: 140,
+//                 width: 117,
 //                 height: 150
 //             }
 //         },
@@ -236,7 +236,7 @@ let c = canvas.getContext('2d');
 //             frameMax: 6,
 //             invertida: false,
 //             area: {
-//                 width: 156,
+//                 width: 150,
 //                 height: 150
 //             },
 //         },
@@ -245,7 +245,7 @@ let c = canvas.getContext('2d');
 //             frameMax: 6,
 //             invertida: true,
 //             area: {
-//                 width: 156,
+//                 width: 135,
 //                 height: 150
 //             }
 //         }
@@ -261,267 +261,7 @@ let c = canvas.getContext('2d');
 //     positionOnInvert: -50
 // });
 
-// const fogo = new Fighter({
-//     position: {
-//         x: 300,
-//         y: 0
-//     },
-//     velocity: {
-//         x: 0,
-//         y: 0
-//     },
-//     ctx: c,
-//     offSet: {
-//         x: 0,
-//         y: 0
-//     },
-//     imageSrc: './assets/5/Idle.png',
-//     frameMax: 8,
-//     scale: 2,
-//     offSet: {
-//         x: 266, // 215 // 400
-//         y: 100 // 220
-//     },
-//     sprites: {
-//         idle: {
-//             imageSrc: './assets/5/Idle.png',
-//             frameMax: 8,
-//             invertida: false
-//         },
-//         run: {
-//             imageSrc: './assets/5/Run.png',
-//             frameMax: 8,
-//             invertida: false
-//         },
-//         jump: {
-//             imageSrc: './assets/5/Jump.png',
-//             frameMax: 3,
-//             invertida: false
-//         },
-//         fall: {
-//             imageSrc: './assets/5/Fall.png',
-//             frameMax: 3,
-//             invertida: false
-//         },
-//         attack1: {
-//             imageSrc: './assets/5/Attack1.png',
-//             frameMax: 11,
-//             invertida: false,
-//             area: {
-//                 width: 107,
-//                 height: 150
-//             }
-//         },
-//         idle_invertido: {
-//             imageSrc: './assets/5/Idle.png',
-//             frameMax: 8,
-//             invertida: true
-//         },
-//         run_invertido: {
-//             imageSrc: './assets/5/Run.png',
-//             frameMax: 8,
-//             invertida: true
-//         },
-//         jump_invertido: {
-//             imageSrc: './assets/5/Jump.png',
-//             frameMax: 3,
-//             invertida: true
-//         },
-//         fall_invertido: {
-//             imageSrc: './assets/5/Fall.png',
-//             frameMax: 3,
-//             invertida: true
-//         },
-//         attack1_invertido: {
-//             imageSrc: './assets/5/Attack1.png',
-//             frameMax: 11,
-//             invertida: true,
-//             area: {
-//                 width: 107,
-//                 height: 150
-//             }
-//         },
-//         takeHit: {
-//             imageSrc: './assets/5/Takehit.png',
-//             frameMax: 6,
-//             invertida: false
-//         },
-//         takeHit_invertido: {
-//             imageSrc: './assets/5/TakeHit.png',
-//             frameMax: 6,
-//             invertida: true
-//         },
-//         death: {
-//             imageSrc: './assets/5/Death.png',
-//             frameMax: 13,
-//             invertida: false
-//         },
-//         death_invertido: {
-//             imageSrc: './assets/5/Death.png',
-//             frameMax: 13,
-//             invertida: true
-//         },
-//         attack2: {
-//             imageSrc: './assets/5/Attack2.png',
-//             frameMax: 18,
-//             invertida: false,
-//             area: {
-//                 width: 170,
-//                 height: 150
-//             },
-//         },
-//         attack2_invertido: {
-//             imageSrc: './assets/5/Attack2.png',
-//             frameMax: 18,
-//             invertida: true,
-//             area: {
-//                 width: 170,
-//                 height: 150
-//             }
-//         }
-//     },
-//     attackBox: {
-//         offSet: {
-//             x: 100,
-//             y: -1
-//         },
-//         width: 0,
-//         height: 150
-//     },
-//     positionOnInvert: -50
-// });
-
-// const roxa = new Fighter({
-//     position: {
-//         x: 300,
-//         y: 0
-//     },
-//     velocity: {
-//         x: 0,
-//         y: 0
-//     },
-//     ctx: c,
-//     offSet: {
-//         x: 0,
-//         y: 0
-//     },
-//     imageSrc: './assets/6/Idle.png',
-//     frameMax: 4,
-//     scale: 2,
-//     offSet: {
-//         x: 80, // 215 // 400
-//         y: -20 // 220
-//     },
-//     sprites: {
-//         idle: {
-//             imageSrc: './assets/6/Idle.png',
-//             frameMax: 4,
-//             invertida: false
-//         },
-//         run: {
-//             imageSrc: './assets/6/Run.png',
-//             frameMax: 7,
-//             invertida: false
-//         },
-//         jump: {
-//             imageSrc: './assets/6/Jump.png',
-//             frameMax: 6,
-//             invertida: false
-//         },
-//         fall: {
-//             imageSrc: './assets/6/Fall.png',
-//             frameMax: 3,
-//             invertida: false
-//         },
-//         attack1: {
-//             imageSrc: './assets/6/Attack1.png',
-//             frameMax: 6,
-//             invertida: false,
-//             area: {
-//                 width: 70,
-//                 height: 150
-//             }
-//         },
-//         idle_invertido: {
-//             imageSrc: './assets/6/Idle.png',
-//             frameMax: 4,
-//             invertida: true
-//         },
-//         run_invertido: {
-//             imageSrc: './assets/6/Run.png',
-//             frameMax: 7,
-//             invertida: true
-//         },
-//         jump_invertido: {
-//             imageSrc: './assets/6/Jump.png',
-//             frameMax: 6,
-//             invertida: true
-//         },
-//         fall_invertido: {
-//             imageSrc: './assets/6/Fall.png',
-//             frameMax: 3,
-//             invertida: true
-//         },
-//         attack1_invertido: {
-//             imageSrc: './assets/6/Attack1.png',
-//             frameMax: 6,
-//             invertida: true,
-//             area: {
-//                 width: 70,
-//                 height: 150
-//             }
-//         },
-//         takeHit: {
-//             imageSrc: './assets/6/Takehit.png',
-//             frameMax: 4,
-//             invertida: false
-//         },
-//         takeHit_invertido: {
-//             imageSrc: './assets/6/TakeHit.png',
-//             frameMax: 4,
-//             invertida: true
-//         },
-//         death: {
-//             imageSrc: './assets/6/Death.png',
-//             frameMax: 5,
-//             invertida: false
-//         },
-//         death_invertido: {
-//             imageSrc: './assets/6/Death.png',
-//             frameMax: 5,
-//             invertida: true
-//         },
-//         attack2: {
-//             imageSrc: './assets/6/Attack2.png',
-//             frameMax: 6,
-//             invertida: false,
-//             area: {
-//                 width: 70,
-//                 height: 150
-//             },
-//         },
-//         attack2_invertido: {
-//             imageSrc: './assets/6/Attack2.png',
-//             frameMax: 6,
-//             invertida: true,
-//             area: {
-//                 width: 70,
-//                 height: 150
-//             }
-//         }
-//     },
-//     attackBox: {
-//         offSet: {
-//             x: 100,
-//             y: -1
-//         },
-//         width: 0,
-//         height: 150
-//     },
-//     positionOnInvert: -50
-// });
-
-const metal = new Fighter({
+const fogo = new Fighter({
     position: {
         x: 300,
         y: 0
@@ -535,107 +275,107 @@ const metal = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './assets/3/Idle.png',
+    imageSrc: './assets/5/Idle.png',
     frameMax: 8,
-    scale: 2.7,
+    scale: 2,
     offSet: {
-        x: 356, // 215 // 400
-        y: 190 // 220
+        x: 266, // 215 // 400
+        y: 100 // 220
     },
     sprites: {
         idle: {
-            imageSrc: './assets/3/Idle.png',
+            imageSrc: './assets/5/Idle.png',
             frameMax: 8,
             invertida: false
         },
         run: {
-            imageSrc: './assets/3/Run.png',
+            imageSrc: './assets/5/Run.png',
             frameMax: 8,
             invertida: false
         },
         jump: {
-            imageSrc: './assets/3/Jump.png',
+            imageSrc: './assets/5/Jump.png',
             frameMax: 3,
             invertida: false
         },
         fall: {
-            imageSrc: './assets/3/Fall.png',
+            imageSrc: './assets/5/Fall.png',
             frameMax: 3,
             invertida: false
         },
         attack1: {
-            imageSrc: './assets/3/Attack1.png',
-            frameMax: 6,
+            imageSrc: './assets/5/Attack1.png',
+            frameMax: 11,
             invertida: false,
             area: {
-                width: 113,
+                width: 130,
                 height: 150
             }
         },
         idle_invertido: {
-            imageSrc: './assets/3/Idle.png',
+            imageSrc: './assets/5/Idle.png',
             frameMax: 8,
             invertida: true
         },
         run_invertido: {
-            imageSrc: './assets/3/Run.png',
+            imageSrc: './assets/5/Run.png',
             frameMax: 8,
             invertida: true
         },
         jump_invertido: {
-            imageSrc: './assets/3/Jump.png',
+            imageSrc: './assets/5/Jump.png',
             frameMax: 3,
             invertida: true
         },
         fall_invertido: {
-            imageSrc: './assets/3/Fall.png',
+            imageSrc: './assets/5/Fall.png',
             frameMax: 3,
             invertida: true
         },
         attack1_invertido: {
-            imageSrc: './assets/3/Attack1.png',
-            frameMax: 6,
+            imageSrc: './assets/5/Attack1.png',
+            frameMax: 11,
             invertida: true,
             area: {
-                width: 113,
+                width: 117,
                 height: 150
             }
         },
         takeHit: {
-            imageSrc: './assets/3/Takehit.png',
+            imageSrc: './assets/5/Takehit.png',
             frameMax: 6,
             invertida: false
         },
         takeHit_invertido: {
-            imageSrc: './assets/3/TakeHit.png',
+            imageSrc: './assets/5/TakeHit.png',
             frameMax: 6,
             invertida: true
         },
         death: {
-            imageSrc: './assets/3/Death.png',
-            frameMax: 12,
+            imageSrc: './assets/5/Death.png',
+            frameMax: 13,
             invertida: false
         },
         death_invertido: {
-            imageSrc: './assets/3/Death.png',
-            frameMax: 12,
+            imageSrc: './assets/5/Death.png',
+            frameMax: 13,
             invertida: true
         },
         attack2: {
-            imageSrc: './assets/3/Attack2.png',
-            frameMax: 11,
+            imageSrc: './assets/5/Attack2.png',
+            frameMax: 18,
             invertida: false,
             area: {
-                width: 276,
+                width: 150,
                 height: 150
             },
         },
         attack2_invertido: {
-            imageSrc: './assets/3/Attack2.png',
-            frameMax: 11,
+            imageSrc: './assets/5/Attack2.png',
+            frameMax: 18,
             invertida: true,
             area: {
-                width: 276,
+                width: 135,
                 height: 150
             }
         }
@@ -651,6 +391,6 @@ const metal = new Fighter({
     positionOnInvert: -50
 });
 
-export function selectedSpritePlayer() {
-    return metal
+export function selectedSpriteA() {
+    return fogo
 }

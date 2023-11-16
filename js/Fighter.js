@@ -69,12 +69,12 @@ export class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offSet.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offSet.y;
 
-        // this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-        // this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
         // // attack box
         // if (this.isAttacking) {
-        // this.ctx.fillStyle = "rgba(50, 200, 50, 0.4)";
-        // this.ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        this.ctx.fillStyle = "rgba(50, 200, 50, 0.4)";
+        this.ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
         // }
 
 

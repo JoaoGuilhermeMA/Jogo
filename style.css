@@ -1,4 +1,4 @@
-/* #barras-de-vida{
+#barras-de-vida{
     display: flex;
     margin: 20px 60px;
 }
@@ -30,9 +30,9 @@
     background-color: #f44336;
     width: 0;
     border-radius: 10px;
-} */
+}
 
-.main {
+/* .main {
     text-align: center;
 }
 
@@ -52,4 +52,4 @@ h1 {
     margin: 10px;
     flex: 0 0 calc(33.33% - 20px);
     /* Isso garante 3 artigos por linha, considerando a margem */
-}
+/* } */ 
