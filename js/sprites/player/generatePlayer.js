@@ -4,7 +4,7 @@ let c = canvas.getContext('2d');
 
 const raio = new Fighter({
     position: {
-        x: 300,
+        x: 100,
         y: 0
     },
     velocity: {
@@ -133,7 +133,7 @@ const raio = new Fighter({
 
 const chines = new Fighter({
     position: {
-        x: 400,
+        x: 100,
         y: 100
     },
     width: 100,
@@ -264,7 +264,7 @@ const chines = new Fighter({
 
 const rei = new Fighter({
     position: {
-        x: 300,
+        x: 100,
         y: 0
     },
     velocity: {
@@ -394,7 +394,7 @@ const rei = new Fighter({
 
 const fogo = new Fighter({
     position: {
-        x: 300,
+        x: 100,
         y: 0
     },
     velocity: {
@@ -524,7 +524,7 @@ const fogo = new Fighter({
 
 const roxa = new Fighter({
     position: {
-        x: 300,
+        x: 100,
         y: 0
     },
     velocity: {
@@ -654,7 +654,7 @@ const roxa = new Fighter({
 
 const metal = new Fighter({
     position: {
-        x: 300,
+        x: 100,
         y: 0
     },
     velocity: {
