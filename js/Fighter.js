@@ -16,6 +16,7 @@ export class Fighter extends Sprite {
         attackBox = { offSet: {}, width: undefined, height: undefined },
         width = 50,
         height = 150,
+        positionOnInvert = -60
     }) {
         super({
             ctx,
@@ -24,6 +25,7 @@ export class Fighter extends Sprite {
             scale,
             frameMax,
             offSet,
+            positionOnInvert: positionOnInvert
         });
         this.health = 100;
         this.frameCurrent = 0;
@@ -56,6 +58,7 @@ export class Fighter extends Sprite {
         }
     }
 
+
     update() {
         this.draw();
         if (!this.dead) {
@@ -66,13 +69,13 @@ export class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offSet.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offSet.y;
 
-        // this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-        // this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+        this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+        this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
         // attack box
-        if (this.isAttacking) {
-            this.ctx.fillStyle = "rgba(50, 200, 50, 0.1)";
-            this.ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        }
+        // if (this.isAttacking) {
+        this.ctx.fillStyle = "rgba(50, 200, 50, 0.4)";
+        this.ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        // }
 
 
         this.position.x += this.velocity.x;
@@ -99,7 +102,7 @@ export class Fighter extends Sprite {
             if (this.infront) {
                 this.switchSprites("attack2");
             } else {
-                this.switchSprites("attack2");
+                this.switchSprites("attack2_invertido");
             }
         } else if (attack === '0') {
             if (this.infront) {
@@ -108,7 +111,11 @@ export class Fighter extends Sprite {
                 this.switchSprites("attack1_invertido");
             }
         } else {
-            this.switchSprites("attack2")
+            if (this.infront) {
+                this.switchSprites("attack2")
+            } else {
+                this.switchSprites("attack2_invertido");
+            }
         }
         this.isAttacking = true;
     }
@@ -128,7 +135,6 @@ export class Fighter extends Sprite {
                 this.switchSprites('takeHit_invertido');
             }
         }
-        console.log(this.health)
     }
 
     switchSprites(sprite) {
@@ -146,7 +152,8 @@ export class Fighter extends Sprite {
         }
 
         // || (this.image === this.sprites.attack1_invertido.image && this.frameCurrent < this.sprites.attack1_invertido.frameMax - 1)
-        if ((this.image === this.sprites.attack2.image && this.frameCurrent < this.sprites.attack2.frameMax - 1)) {
+        if ((this.image === this.sprites.attack2.image && this.frameCurrent < this.sprites.attack2.frameMax - 1) ||
+            (this.image === this.sprites.attack2_invertido.image && this.frameCurrent < this.sprites.attack2_invertido.frameMax - 1)) {
             return;
         }
 
@@ -160,6 +167,7 @@ export class Fighter extends Sprite {
             case "idle":
                 if (this.image !== this.sprites.idle.image) {
                     this.frameMax = this.sprites.idle.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.idle.image;
                     this.frameCurrent = 0;
                 }
@@ -167,6 +175,7 @@ export class Fighter extends Sprite {
             case "run":
                 if (this.image !== this.sprites.run.image) {
                     this.frameMax = this.sprites.run.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.run.image;
                     this.frameCurrent = 0;
                 }
@@ -174,6 +183,7 @@ export class Fighter extends Sprite {
             case "jump":
                 if (this.image !== this.sprites.jump.image) {
                     this.frameMax = this.sprites.jump.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.jump.image;
                     this.frameCurrent = 0;
                 }
@@ -181,13 +191,17 @@ export class Fighter extends Sprite {
             case "fall":
                 if (this.image !== this.sprites.fall.image) {
                     this.frameMax = this.sprites.fall.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.fall.image;
                     this.frameCurrent = 0;
                 }
                 break;
             case "attack1":
                 if (this.image !== this.sprites.attack1.image) {
+                    this.attackBox.width = this.sprites.attack1.area.width;
+                    this.attackBox.height = this.sprites.attack1.area.height;
                     this.frameMax = this.sprites.attack1.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.attack1.image;
                     this.frameCurrent = 0;
                 }
@@ -195,6 +209,7 @@ export class Fighter extends Sprite {
             case "takeHit":
                 if (this.image !== this.sprites.takeHit.image) {
                     this.frameMax = this.sprites.takeHit.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.takeHit.image;
                     this.frameCurrent = 0;
                 }
@@ -202,14 +217,17 @@ export class Fighter extends Sprite {
             case "death":
                 if (this.image !== this.sprites.death.image) {
                     this.frameMax = this.sprites.death.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.death.image;
                     this.frameCurrent = 0;
                 }
                 break;
             case "attack2":
                 if (this.image !== this.sprites.attack2.image) {
-                    console.log(this.sprites.attack1);
+                    this.attackBox.width = this.sprites.attack2.area.width;
+                    this.attackBox.height = this.sprites.attack2.area.height;
                     this.frameMax = this.sprites.attack2.frameMax;
+                    this.invertida = false;
                     this.image = this.sprites.attack2.image;
                     this.frameCurrent = 0;
                 }
@@ -217,6 +235,7 @@ export class Fighter extends Sprite {
             case "idle_invertido":
                 if (this.image !== this.sprites.idle_invertido.image) {
                     this.frameMax = this.sprites.idle_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.idle_invertido.image;
                     this.frameCurrent = 0;
                 }
@@ -224,6 +243,7 @@ export class Fighter extends Sprite {
             case "run_invertido":
                 if (this.image !== this.sprites.run_invertido.image) {
                     this.frameMax = this.sprites.run_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.run_invertido.image;
                     this.frameCurrent = 0;
                 }
@@ -231,6 +251,7 @@ export class Fighter extends Sprite {
             case "jump_invertido":
                 if (this.image !== this.sprites.jump_invertido.image) {
                     this.frameMax = this.sprites.jump_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.jump_invertido.image;
                     this.frameCurrent = 0;
                 }
@@ -238,13 +259,18 @@ export class Fighter extends Sprite {
             case "fall_invertido":
                 if (this.image !== this.sprites.fall_invertido.image) {
                     this.frameMax = this.sprites.fall_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.fall_invertido.image;
                     this.frameCurrent = 0;
                 }
                 break;
             case "attack1_invertido":
                 if (this.image !== this.sprites.attack1_invertido.image) {
+                    this.attackBox.offSet.x = - this.sprites.attack1_invertido.area.width;
+                    this.attackBox.width = this.sprites.attack1_invertido.area.width;
+                    this.attackBox.height = this.sprites.attack1_invertido.area.height;
                     this.frameMax = this.sprites.attack1_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.attack1_invertido.image;
                     this.frameCurrent = 0;
                 }
@@ -252,6 +278,7 @@ export class Fighter extends Sprite {
             case "takeHit_invertido":
                 if (this.image !== this.sprites.takeHit_invertido.image) {
                     this.frameMax = this.sprites.takeHit_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.takeHit_invertido.image;
                     this.frameCurrent = 0;
                 }
@@ -259,10 +286,21 @@ export class Fighter extends Sprite {
             case "death_invertido":
                 if (this.image !== this.sprites.death_invertido.image) {
                     this.frameMax = this.sprites.death_invertido.frameMax;
+                    this.invertida = true;
                     this.image = this.sprites.death_invertido.image;
                     this.frameCurrent = 0;
                 }
                 break;
+            case "attack2_invertido":
+                if (this.image !== this.sprites.attack2_invertido.image) {
+                    this.attackBox.offSet.x = - this.sprites.attack2_invertido.area.width;
+                    this.attackBox.width = this.sprites.attack2_invertido.area.width;
+                    this.attackBox.height = this.sprites.attack2_invertido.area.height;
+                    this.frameMax = this.sprites.attack2_invertido.frameMax;
+                    this.invertida = true;
+                    this.image = this.sprites.attack2_invertido.image;
+                    this.frameCurrent = 0;
+                }
             default:
                 break;
         }

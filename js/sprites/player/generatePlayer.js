@@ -4,7 +4,7 @@ let c = canvas.getContext('2d');
 
 const player = new Fighter({
     position: {
-        x: 0,
+        x: 300,
         y: 0
     },
     velocity: {
@@ -20,7 +20,7 @@ const player = new Fighter({
     frameMax: 10,
     scale: 3,
     offSet: {
-        x: 215,
+        x: 215, // 215
         y: 150
     },
     sprites: {
@@ -47,32 +47,40 @@ const player = new Fighter({
         attack1: {
             imageSrc: './assets/1/Attack1.png',
             frameMax: 7,
-            invertida: false
+            invertida: false,
+            area: {
+                width: 130,
+                height: 150
+            }
         },
         idle_invertido: {
-            imageSrc: './assets/1/Idle_invertido.png',
+            imageSrc: './assets/1/Idle.png',
             frameMax: 10,
             invertida: true
         },
         run_invertido: {
-            imageSrc: './assets/1/Run_invertido.png',
+            imageSrc: './assets/1/Run.png',
             frameMax: 8,
             invertida: true
         },
         jump_invertido: {
-            imageSrc: './assets/1/Jump_invertido.png',
+            imageSrc: './assets/1/Jump.png',
             frameMax: 3,
             invertida: true
         },
         fall_invertido: {
-            imageSrc: './assets/1/Fall_invertido.png',
+            imageSrc: './assets/1/Fall.png',
             frameMax: 3,
             invertida: true
         },
         attack1_invertido: {
-            imageSrc: './assets/1/Attack1_invertido.png',
+            imageSrc: './assets/1/Attack1.png',
             frameMax: 7,
-            invertida: true
+            invertida: true,
+            area: {
+                width: 117,
+                height: 150
+            }
         },
         takeHit: {
             imageSrc: './assets/1/Takehit.png',
@@ -80,7 +88,7 @@ const player = new Fighter({
             invertida: false
         },
         takeHit_invertido: {
-            imageSrc: './assets/1/TakeHit_invertido.png',
+            imageSrc: './assets/1/TakeHit.png',
             frameMax: 3,
             invertida: true
         },
@@ -90,19 +98,27 @@ const player = new Fighter({
             invertida: false
         },
         death_invertido: {
-            imageSrc: './assets/1/Death_invertido.png',
+            imageSrc: './assets/1/Death.png',
             frameMax: 7,
             invertida: true
         },
         attack2: {
             imageSrc: './assets/1/Attack3.png',
             frameMax: 8,
-            invertida: false
+            invertida: false,
+            area: {
+                width: 150,
+                height: 150
+            },
         },
         attack2_invertido: {
-            imageSrc: './assets/1/Attack3_invertido.png',
-            frameMax: 9,
-            invertida: true
+            imageSrc: './assets/1/Attack3.png',
+            frameMax: 8,
+            invertida: true,
+            area: {
+                width: 135,
+                height: 150
+            }
         }
     },
     attackBox: {
@@ -110,7 +126,7 @@ const player = new Fighter({
             x: 100,
             y: -1
         },
-        width: 110,
+        width: 0,
         height: 150
     }
 });
